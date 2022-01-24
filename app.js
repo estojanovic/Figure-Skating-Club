@@ -1,10 +1,10 @@
 const express = require('express');
 const { sequelize, Users } = require('./models');
 
-const routeuser= require('./routes/users');
-const routeices = require('./routes/iceskates');
-const routepl = require('./routes/privatelessons');
-const routetr = require('./routes/trainings');
+// const routeuser= require('./routes/users');
+// const routeices = require('./routes/iceskates');
+// const routepl = require('./routes/privatelessons');
+// const routetr = require('./routes/trainings');
 
 const path = require('path');
 const jwt = require('jsonwebtoken');
@@ -12,10 +12,10 @@ require('dotenv').config();
 
 const app = express();
 
-app.use ('/admin', routeuser);
-app.use('/admin', routeices);
-app.use('/admin', routepl);
-app.use('/admin', routetr);
+// app.use ('/admin', routeuser);
+// app.use('/admin', routeices);
+// app.use('/admin', routepl);
+// app.use('/admin', routetr);
 
 
 function getCookies(req) {

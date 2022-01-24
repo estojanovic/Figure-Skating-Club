@@ -1,4 +1,5 @@
 const express = require('express');
+const {userSchema} = require('./validation_joi/validation.js');
 const { sequelize, Users } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -23,15 +24,31 @@ app.use(cors(corsOptions));
 
 app.post('/register', (req, res) => {
 
-    const obj = {
-        name: req.body.name,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10),
-        role: req.body.role
-        // moderator: req.body.moderator
-    };
 
+    // userSchema.validateAsync(req.body).then(obj => {
+        
+        // // obj.password = bcrypt.hashSync(req.body.password, 10);
+        //     Users.create(obj).then(row =>{
+        //         console.log("User succesfully created!");
+        //         res.json(row);
+        //     }).catch(err => res.status(500).json(err));
+    
+        // }).catch(err => res.status(600).json(err));    
+
+    // const obj = {
+    //     name: req.body.name,
+    //     lastname: req.body.lastname,
+    //     email: req.body.email,
+    //     password: bcrypt.hashSync(req.body.password, 10),
+    //     role: req.body.role
+    //     // moderator: req.body.moderator
+    // };
+
+    userSchema.validateAsync(req.body).then(obj => {
+        
+    obj = req.body;
+    obj.password = bcrypt.hashSync(req.body.password, 10);
+    // console.log(obj.password);
     Users.create(obj).then( rows => {
         
         const usr = {
@@ -47,6 +64,27 @@ app.post('/register', (req, res) => {
         res.json({ token: token });
 
     }).catch( err => res.status(500).json(err) );
+
+    }).catch(err => res.status(600).json(err));    
+
+
+    // userSchema.validateAsync(obj).then(obj => {
+    // Users.create(obj).then( rows => {
+        
+    //     const usr = {
+    //         userId: rows.id,
+    //         user: rows.name,
+    //         user: rows.role
+    //     };
+
+    //     const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
+
+    //     console.log(token);
+        
+    //     res.json({ token: token });
+
+    // }).catch( err => res.status(500).json(err) );
+    // // }).catch(err => res.status(600).json(err));   
 });
 
 app.post('/login', (req, res) => {

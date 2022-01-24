@@ -3,7 +3,7 @@ function init() {
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch('http://localhost:8000/admin/privatelessons', {
+    fetch('http://localhost:7000/admin/privatelessons', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -27,7 +27,7 @@ function init() {
             coach: document.getElementById('coach').value
         };
             
-        fetch('http://localhost:8000/admin/privatelessons', {
+        fetch('http://localhost:7000/admin/privatelessons', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -52,7 +52,7 @@ function init() {
         coach: document.getElementById('coach').value
     };
         
-    fetch('http://localhost:8000/admin/privatelessons/'+id.value, {
+    fetch('http://localhost:7000/admin/privatelessons/'+id.value, {
         method: 'DELETE', 
         headers: { 'Content-Type': 'application/json'}       
     })
@@ -76,7 +76,7 @@ function init() {
         coach: document.getElementById('coach').value
     };
         
-    fetch('http://localhost:8000/admin/privatelessons/'+id.value, {
+    fetch('http://localhost:7000/admin/privatelessons/'+id.value, {
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json'},  
         body: JSON.stringify(data)     

@@ -1,5 +1,6 @@
 const { sequelize, IceSkates } = require('../models');
 const express = require('express');
+const {iceskatesSchema} = require('../validation_joi/validation.js');
 
 const route = express.Router();
 route.use(express.json());
@@ -23,25 +24,33 @@ route.get('/iceskates/:id', (req, res) => {
 
 route.post('/iceskates', (req, res) => {
     
-    IceSkates.create({ model: req.body.model, size: req.body.size})
-        .then( rows => res.json(rows) )
-        .catch( err => res.status(500).json(err) );
+        iceskatesSchema.validateAsync(req.body).then(obj => {
+            obj = req.body;
+                IceSkates.create(obj).then(row =>{
+                    console.log("Ice skates succesfully created!");
+                    res.json(row);
+                }).catch(err => res.status(500).json(err));
+            }).catch(err => res.status(600).json(err));    
 
 });
 
 route.put('/iceskates/:id', (req, res) => {
-    
-    IceSkates.findOne({ where: { id: req.params.id } })
-        .then( ice => {
-            ice.model = req.body.model;
-            ice.size = req.body.size;
-           
-            ice.save()
-                .then( rows => res.json(rows) )
-                .catch( err => res.status(500).json(err) );
-        })
-        .catch( err => res.status(500).json(err) );
 
+        iceskatesSchema.validateAsync(req.body).then(obj => {
+            IceSkates.findOne({ where: { id: req.params.id }}).then(ice =>{
+                ice.model = req.body.model;
+                ice.size = req.body.size;
+                ice.save();
+                res.json(ice);
+            }).catch(err => {
+                res.status(500).json(err);
+                console.log("error 500 tebrice");
+            });
+        }).catch(err => {
+            res.status(600).json(err);
+            console.log("error 600 tebrice");
+        }); 
+      
 });
 
 route.delete('/iceskates/:id', (req, res) => {

@@ -3,7 +3,7 @@ function init() {
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch('http://localhost:8000/admin/users', {
+    fetch('http://localhost:7000/admin/users', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -30,7 +30,7 @@ function init() {
             role: document.getElementById('role').value
         };
             
-        fetch('http://localhost:9000/register', {
+        fetch('http://localhost:7000/admin/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -58,7 +58,7 @@ function init() {
         role: document.getElementById('role').value
     };
         
-    fetch('http://localhost:8000/admin/users/'+id.value, {
+    fetch('http://localhost:7000/admin/users/'+id.value, {
         method: 'DELETE', 
         headers: { 'Content-Type': 'application/json'}       
     })
@@ -85,7 +85,7 @@ function init() {
         role: document.getElementById('role').value
     };
         
-    fetch('http://localhost:8000/admin/users/'+id.value, {
+    fetch('http://localhost:7000/admin/users/'+id.value, {
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json'},  
         body: JSON.stringify(data)     

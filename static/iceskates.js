@@ -3,7 +3,7 @@ function init() {
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch('http://localhost:8000/admin/iceskates', {
+    fetch('http://localhost:7000/admin/iceskates', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -26,7 +26,7 @@ function init() {
             size: document.getElementById('size').value
         };
             
-        fetch('http://localhost:8000/admin/iceskates', {
+        fetch('http://localhost:7000/admin/iceskates', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -50,7 +50,7 @@ function init() {
         size: document.getElementById('size').value
     };
         
-    fetch('http://localhost:8000/admin/iceskates/'+id.value, {
+    fetch('http://localhost:7000/admin/iceskates/'+id.value, {
         method: 'DELETE', 
         headers: { 'Content-Type': 'application/json'}       
     })
@@ -73,7 +73,7 @@ function init() {
         size: document.getElementById('size').value
     };
         
-    fetch('http://localhost:8000/admin/iceskates/'+id.value, {
+    fetch('http://localhost:7000/admin/iceskates/'+id.value, {
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json'},  
         body: JSON.stringify(data)     
