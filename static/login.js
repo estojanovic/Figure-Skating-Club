@@ -18,8 +18,12 @@ function init() {
                 if (el.msg) {
                     alert(el.msg);
                 } else {
+                    
                     document.cookie = `token=${el.token};SameSite=Lax`;
-                    window.location.href = 'index.html';
+                    if(data.name == "admin@gmail.com" && data.password == "admin"){
+                        window.location.href = 'index.html';
+                    } else window.location.href = 'indexmoderator.html';
+                    
                 }
             });
     });
