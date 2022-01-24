@@ -26,9 +26,10 @@ function init() {
 
             .then( res => res.json() )
             .then( el => {
-
+                
                 document.cookie = `token=${el.token};SameSite=Lax`;
-                window.location.href = 'index.html';
+                if (data.role=="moderator")
+                window.location.href = 'indexmoderator.html';
             });
 
         // NE DIRAAAAAJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
