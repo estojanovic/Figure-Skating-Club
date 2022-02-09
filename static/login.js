@@ -20,9 +20,9 @@ function init() {
                 } else {
                     
                     document.cookie = `token=${el.token};SameSite=Lax`;
-                    if(data.name == "admin@gmail.com" && data.password == "admin"){
-                        window.location.href = 'index.html';
-                    } else window.location.href = 'indexmoderator.html';
+                    // if(data.name == "admin@gmail.com" && data.password == "admin"){
+                    //     window.location.href = 'index.html';
+                    // } else window.location.href = 'indexmoderator.html';
                     
                 }
             });
