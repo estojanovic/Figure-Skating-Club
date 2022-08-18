@@ -11,12 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
      static associate(models) {
       // define association here
+      this.belongsTo(Users, {foreignKey: 'UserID', as: 'user'});
     }
   }
   PrivateLessons.init({
     day: DataTypes.STRING,
     time: DataTypes.STRING,
-    coach: DataTypes.STRING
+    coach: DataTypes.STRING,
+    UserID:{
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize,
     modelName: 'PrivateLessons',

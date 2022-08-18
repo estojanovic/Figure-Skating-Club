@@ -24,8 +24,13 @@ function init() {
         const data = {
             day: document.getElementById('day').value,
             time: document.getElementById('time').value,
-            coach: document.getElementById('coach').value
+            coach: document.getElementById('coach').value,
+            UserID: 0
         };
+       
+        console.log("ovde radim nesto");
+        console.log(data.user);
+        console.log(data.day);
             
         fetch('http://localhost:7000/admin/privatelessons', {
             method: 'POST',
@@ -49,7 +54,8 @@ function init() {
         id: document.getElementById('id').value,
         day: document.getElementById('day').value,
         time: document.getElementById('time').value,
-        coach: document.getElementById('coach').value
+        coach: document.getElementById('coach').value,
+        UserID: 0
     };
         
     fetch('http://localhost:7000/admin/privatelessons/'+id.value, {
@@ -73,7 +79,8 @@ function init() {
         id: document.getElementById('id').value,
         day: document.getElementById('day').value,
         time: document.getElementById('time').value,
-        coach: document.getElementById('coach').value
+        coach: document.getElementById('coach').value,
+        UserID: 0
     };
         
     fetch('http://localhost:7000/admin/privatelessons/'+id.value, {

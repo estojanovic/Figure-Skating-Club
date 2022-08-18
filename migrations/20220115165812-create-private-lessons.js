@@ -17,6 +17,9 @@ module.exports = {
       coach: {
         type: Sequelize.STRING
       },
+      UserID: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

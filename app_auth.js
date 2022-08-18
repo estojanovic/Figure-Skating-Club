@@ -53,10 +53,11 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
   
-    Users.findOne({ where: { email: req.body.name } })
+    Users.findOne({ where: { name: req.body.name } })
         .then( usr => {
             console.log("Nasao usera ");
-            console.log(usr);
+            console.log(usr.name);
+            console.log(usr.email);
             if (bcrypt.compareSync(req.body.password, usr.password)) {
                 const obj = {
                     userId: usr.id,
