@@ -7,6 +7,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+var globalid;
 
 app.use(cors());
 app.options('*', cors());
@@ -58,12 +59,16 @@ app.post('/login', (req, res) => {
             console.log("Nasao usera ");
             console.log(usr.name);
             console.log(usr.email);
+            console.log(usr.id);
+            globalid = usr.id;
+            console.log(globalid)
             if (bcrypt.compareSync(req.body.password, usr.password)) {
                 const obj = {
                     userId: usr.id,
                     user: usr.name,
                     role: usr.role
                 };  
+                
                 console.log("öbjekat"+ obj);
                 console.log(process.env.ACCESS_TOKEN_SECRET);
                 const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET);
@@ -80,3 +85,5 @@ app.listen({ port: 9000 }, async () => {
     await sequelize.authenticate();
     console.log("Startovao auth");
 });
+
+exports.globalid = globalid;

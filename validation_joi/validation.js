@@ -24,6 +24,14 @@ const privatelessonsSchema = Joi.object({
     coach: Joi.string().min(1).required()
 });
 
+const reservationsSchema = Joi.object({
+    id: Joi.number().integer(),
+    userid: Joi.number().integer(),
+    day: Joi.string().min(1).required(),
+    time: Joi.string().min(1).required(),
+    coach: Joi.string().min(1).required()
+});
+
 const iceskatesSchema = Joi.object({
     id: Joi.number().integer(),
     model: Joi.string().min(1).required(),

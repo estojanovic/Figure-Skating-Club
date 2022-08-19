@@ -8,6 +8,7 @@ const routeuser= require('./routes/users');
 const routeices = require('./routes/iceskates');
 const routepl = require('./routes/privatelessons');
 const routetr = require('./routes/trainings');
+const routeres = require('./routes/reservations');
 
 const path = require('path');
 
@@ -24,6 +25,7 @@ app.use ('/admin', routeuser);
 app.use('/admin',routeices);
 app.use('/admin', routepl);
 app.use('/admin', routetr);
+app.use('/admin', routeres);
 
 app.use(express.static(path.join(__dirname,'static')));
 

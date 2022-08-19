@@ -1,9 +1,16 @@
+// get a reference to your required module
+var myModule = require('./app_auth');
+
+var globalid = myModule.globalid;
+console.log(globalid)
+console.log("gore je global id")
+
 function init() {
 
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch('http://localhost:7000/admin/privatelessons', {
+    fetch('http://localhost:7000/admin/reservations', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -22,6 +29,7 @@ function init() {
             e.preventDefault();
     
         const data = {
+            userid: globalid,
             day: document.getElementById('day').value,
             time: document.getElementById('time').value,
             coach: document.getElementById('coach').value
@@ -31,7 +39,7 @@ function init() {
         console.log(data.user);
         console.log(data.day);
             
-        fetch('http://localhost:7000/admin/privatelessons', {
+        fetch('http://localhost:7000/admin/reservations', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -42,7 +50,7 @@ function init() {
             .then( el => {
                     
                 document.cookie = `token=${el.token};SameSite=Lax`;
-                window.location.href = 'privatelessons.html';
+                window.location.href = 'reservations.html';
             });
     }); 
 
@@ -51,12 +59,13 @@ function init() {
 
     const data = {
         id: document.getElementById('id').value,
+        userid: globalid,
         day: document.getElementById('day').value,
         time: document.getElementById('time').value,
         coach: document.getElementById('coach').value
     };
         
-    fetch('http://localhost:7000/admin/privatelessons/'+id.value, {
+    fetch('http://localhost:7000/admin/reservations/'+id.value, {
         method: 'DELETE', 
         headers: { 'Content-Type': 'application/json'}       
     })
@@ -65,7 +74,7 @@ function init() {
         .then( el => {
                 
             document.cookie = `token=${el.token};SameSite=Lax`;
-            window.location.href = 'privatelessons.html';
+            window.location.href = 'reservations.html';
         });
     }); 
 
@@ -75,12 +84,13 @@ function init() {
 
     const data = {
         id: document.getElementById('id').value,
+        userid: globalid,
         day: document.getElementById('day').value,
         time: document.getElementById('time').value,
         coach: document.getElementById('coach').value
     };
         
-    fetch('http://localhost:7000/admin/privatelessons/'+id.value, {
+    fetch('http://localhost:7000/admin/reservations/'+id.value, {
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json'},  
         body: JSON.stringify(data)     
@@ -90,7 +100,7 @@ function init() {
         .then( el => {
                 
             document.cookie = `token=${el.token};SameSite=Lax`;
-            window.location.href = 'privatelessons.html';
+            window.location.href = 'reservations.html';
         });
     }); 
 
